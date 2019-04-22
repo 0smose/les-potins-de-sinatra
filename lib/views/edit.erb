@@ -1,37 +1,18 @@
 <html>
-  <head>
-    <title>PAGE EDITION POTINS</title>
-  </head>
-  <body>
-   <p> modifie ton potin </p>
-   <p>
-     <form action='/gossips/new/' method='POST'>
-      Saisi ici ton nom :  <input type='text' name='gossip_author'/><br/>
-      Modifie ton potin : <input type='text' name='gossip_content'/><br/>
-      <input type='submit'/>
+<head>
+  <title>PAGE EDITION POTINS</title>
+</head>
+<body>
+ <p> modifie ton potin <%= params['id'].to_i%> </p>
+ <p>
+   <%= "<form action=\"/gossips/#{params['id']}/edit/\" method='POST'>" %>
+     nouvel auteur :  <input type='text' name='gossip_new_author'/><br/>
+     nouveau contenu : <input type='text' name='gossip_new_content'/><br/>
+     <input type='submit'/> </form>
 
-   <% gossip_found = Gossip.find(params['id'].to_i) %>
-    <% gossip_author = gossip_found[0] %>
-    <% gossip_content = gossip_found[1] %>
+     
+     <a href="/">Page d'accueil</a> </p> 
 
 
- 
-      <a href="/">Page d'accueil</a> </p> 
-
- <!--    
-  </body>
-</html>
-<html>
-  <head>
-    <title>Créer un potin</title>
-  </head>
-  <body>
-    <h1>Crée un potin !</h1>
-    <p>Balance ton potin via le formulaire ci-dessous</p>
-    <form action='/gossips/new/' method='POST'>
-      Saisi ici ton nom :  <input type='text' name='gossip_author'/><br/>
-      Balance ton potin : <input type='text' name='gossip_content'/><br/>
-      <input type='submit'/>
-    </form>
-  </body>
-</html> -->
+   </body>
+   </html>

@@ -1,7 +1,7 @@
 require 'pry'
 require 'csv'
 
-class Gossip
+class Gossip 
 	attr_reader :author, :content
 
 	def initialize(author, content)
@@ -28,6 +28,22 @@ def self.find(id)
 	return data_base[id]
 end
 
+def self.update(id, author, content)
+	csv_files = CSV.read(".db/gossip.csv")
+	csv_files.each_index do |index|
+		if index == id.to_i
+			csv_files[index][0] = author
+			csv_files[index][1] = content
+		end
+	end 
+	csv.open('./db/gossip.csv', 'wb') do |csv|
+		csv_file.each do |row|
+			csv << row
+		end
+	end
+	puts id
+
+end
 
 
 end
