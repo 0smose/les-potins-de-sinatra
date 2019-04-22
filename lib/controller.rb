@@ -1,11 +1,15 @@
-require 'gossip'
+
+require 'bundler'
+Bundler.require
+
+	require 'gossip'	
 
 class ApplicationController < Sinatra::Base #on définit une classe AC héritant des fonctionnalités de sinatra
-	attr_accessor :author, :content 
+	#attr_accessor :author, :content 
 
 
  get '/' do # quand ler serveur rencontre une requete "/" renvoie à l'index et qui affiche tous les gossips
-  erb :index, locals: {gossips: Gossip.all}
+  erb :index, locals: {gossips: Gossip.all}		
 end
 
  get '/gossips/new/' do #requete gossip/new renvoie à la page new_gossip
@@ -26,8 +30,13 @@ post '/gossips/new/' do # requête post : à travers un formulaire on envoie deu
 	redirect '/'  																										 # save 
   end
 
-post '/gossips/:id/edit' do
+post '/gossips/:id/edit/' do
 	Gossip.update(params["id"], params["gossip_new_author"], params["gossip_new_content"])
+	puts "Edited Hash params : #{params}"
+	puts "Edited gossip_new_author : #{params["gossip_new_author"]}"
+	puts "Edited gossip_new_content :#{params["gossip_new_content"]}"
+	puts "ID :#{params["id"]}"
+
 	redirect '/'
 end
 
